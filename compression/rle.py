@@ -32,4 +32,4 @@ class RLE:
                 result_str_pointer+=len(char_substr) + 1
                 result_len+=len(char_substr) + 1 # 1 for the alphabet itself
                 p1+=p2+1
-        return result_len
+        return chars[:result_len]

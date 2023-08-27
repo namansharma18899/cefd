@@ -18,4 +18,5 @@ class BWT:
             rotations.append(newstr)
         rotations = sorted(rotations)
         result = [each[-1] for each in rotations]
+        print(result)
         return "".join(result)
