@@ -7,6 +7,7 @@ import os
 from compression.bwt import BWT
 from compression.rle import RLE
 
+#TODO: ADD LOGS 
 
 def compress_string(string_buffer):
     bwt = BWT()
@@ -37,4 +38,4 @@ def compress_file(file):
 
 
 if __name__=="__main__":
-    compress_file('/home/namansh/personal/projects/cefd/temp.text')
+    compress_file('/home/namansh/personal/projects/cefd/assets/temp.text')
