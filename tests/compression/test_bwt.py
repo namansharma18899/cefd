@@ -13,7 +13,7 @@ class TestBWTCompression(unittest.TestCase):
 
     def test_compressed_str_length(self):
         """
-        Test that it can sum a list of integers
+        Test that it can transform the string
         """
         data = [1, 2, 3]
         result = self.BWT_obj.transform(self.test_compressed_str_length_input)

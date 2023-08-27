@@ -13,7 +13,7 @@ class TestRLECompression(unittest.TestCase):
 
     def test_compressed_str_length(self):
         """
-        Test that it can sum a list of integers
+        Test that it can encode the string
         """
         data = [1, 2, 3]
         result = self.rle_obj.compress(self.test_compressed_str_length_input)
