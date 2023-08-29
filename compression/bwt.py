@@ -1,4 +1,7 @@
 from itertools import permutations
+from utility import Logger
+
+logger = Logger().get_logging_object(__name__)
 
 
 class BWT:
@@ -11,12 +14,27 @@ class BWT:
     def __init__(self) -> None:
         pass
 
-    def transform(self, inputStr: str):
-        rotations = []
-        for index in range(0, len(inputStr)):
-            newstr = inputStr[index : len(inputStr)] + inputStr[0:index]
-            rotations.append(newstr)
-        rotations = sorted(rotations)
+    def encode(self, inputStr: str):
+        inputStr += "$"
+        rotations = [
+            inputStr[index:] + inputStr[:index] for index in range(len(inputStr))
+        ]
+        rotations.sort()
         result = [each[-1] for each in rotations]
-        print(result)
+        logger.debug("Encoded Text")
         return "".join(result)
+
+    def decode(self, encoded_text):
+        print("encdoe -> ", encoded_text)
+        table = sorted([(c, i) for i, c in enumerate(encoded_text)])
+        index = 0
+        for ind, each in enumerate(table):
+            if table[ind][0] == "$":
+                index = ind
+                break
+        decoded_text = ""
+        for _ in range(len(encoded_text)):
+            decoded_text = table[index][0] + decoded_text
+            index = table[index][1]
+
+        return decoded_text

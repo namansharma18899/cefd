@@ -16,7 +16,7 @@ class TestBWTCompression(unittest.TestCase):
         Test that it can transform the string
         """
         data = [1, 2, 3]
-        result = self.BWT_obj.transform(self.test_compressed_str_length_input)
+        result = self.BWT_obj.encode(self.test_compressed_str_length_input)
         self.assertEqual(result, self.test_compressed_str_length_output)
 
 if __name__ == '__main__':

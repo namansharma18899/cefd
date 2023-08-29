@@ -1,41 +1,74 @@
-#todo: 
-"""
-read the data in chunks, don't read the whole file in memory..
-"""
-
+import argparse
 import os
 from compression.bwt import BWT
 from compression.rle import RLE
 
-#TODO: ADD LOGS 
 
-def compress_string(string_buffer):
+parser = argparse.ArgumentParser()
+parser.add_argument(
+    "-e", "--encode", action="store_true", help="Flag to Encode the string"
+)
+args = parser.parse_args()
+encode = args.encode if args.encode else False
+encoded_file_extension = ".enc"
+decoded_file_extension = ".dec"
+
+
+# TODO: ADD LOGS
+def encode_string_buffer(string_buffer):
     bwt = BWT()
-    bwt = bwt.transform(string_buffer)
-    compressed_string = RLE()
-    compress_char_arr = compressed_string.compress(list(bwt))
-    return ''.join(compress_char_arr)
+    bwt = bwt.encode(string_buffer)
+    rle_obj = RLE()
+    compress_char_arr = rle_obj.encode(bwt)
+    return compress_char_arr
+
+
+def decode_string_buffer(string_buffer):
+    rle_obj = RLE()
+    compress_char_arr = rle_obj.decode(string_buffer)
+    bwt = BWT()
+    bwt = bwt.decode(compress_char_arr)
+    bwt = bwt[::-1][1:]
+    return bwt
+
 
 def write_file(file, buffer):
     """
-    this will make things slow, we can make write async & hold on to buffers upto a limit
+    Note: This will make things slow, we can make write async & hold on to buffers upto a limit.
     """
-    outF = open(file, 'w')
+    outF = open(file, "w")
     outF.write(buffer)
 
-def compress_file(file):
-    f = open(file, 'rb')
+
+def handle_file(file):
+    f = open(file, "rb")
     while True:
-        str_buffer = f.read(1024).decode(encoding='utf-8')
+        str_buffer = f.read(1024).decode(encoding="utf-8")
         if not str_buffer:
             break
-        cmp_output = compress_string(str_buffer)
+        if encode:
+            resultant_file = encode_string_buffer(str_buffer)
+        else:  # decode
+            resultant_file = decode_string_buffer(str_buffer)
+        res_file_extension = (
+            encoded_file_extension if encode else decoded_file_extension
+        )
         y = os.path.basename(file)
-        y = y.split('.')
-        newF = file.split(os.path.basename(file))[0] +  y[0] + '.cmp' + '.' + y[1]
-        write_file(newF, cmp_output)
+        y = y.split(".")
+        newF = (
+            file.split(os.path.basename(file))[0]
+            + y[0]
+            + res_file_extension
+            + "."
+            + y[1]
+        )
+        write_file(newF, resultant_file)
     f.close()
 
 
-if __name__=="__main__":
-    compress_file('/home/namansh/personal/projects/cefd/assets/temp.text')
+if __name__ == "__main__":
+    if encode:
+        file = "/home/namansh/personal/projects/cefd/assets/temp.text"
+    else:
+        file = "/home/namansh/personal/projects/cefd/assets/temp.enc.text"
+    handle_file(file)
