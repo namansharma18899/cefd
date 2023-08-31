@@ -7,3 +7,8 @@
 [] Lossless Image compression
 [] Lossless bit compression
 [] Lossy Compression
+
+#ISSUES:
+
+[x] Fix No freq number for single character
+[] Cmp fails with Numeric Values as well

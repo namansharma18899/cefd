@@ -1,4 +1,6 @@
-from utility import timer
+from utils.utility import timer, Logger
+
+logger = Logger().get_logging_object(__name__)
 
 
 class RLE:
@@ -20,20 +22,25 @@ class RLE:
             if char == prev_char:
                 count += 1
             else:
-                encoded += str(count) + prev_char
+                if count == 1:
+                    encoded += prev_char
+                else:
+                    encoded += str(count) + prev_char
                 count = 1
                 prev_char = char
-        encoded += str(count) + prev_char
+        encoded += str(count) + prev_char if count > 1 else prev_char
         return encoded
 
     @timer
-    def decode(self, encoded_text):
+    def decode(self, encoded_text: str):
+        logger.info("encoded -> {} as".format(encoded_text))
         decoded = ""
         i = 0
-        print("encoddc -> ", encoded_text)
         while i < len(encoded_text):
-            count = int(encoded_text[i])
-            char = encoded_text[i + 1]
-            decoded += char * count
-            i += 2
+            if encoded_text[i].isdigit():
+                decoded += encoded_text[i + 1] * int(encoded_text[i])
+                i += 2
+            else:
+                decoded += encoded_text[i]
+                i += 1
         return decoded
