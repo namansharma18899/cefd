@@ -4,7 +4,8 @@ on:
   pull_request:
     branches:
       - main
-group: ${{ github.workflow }}
+concurrency:
+  group: ${{ github.workflow }} 
 jobs:
   queue_job:
     runs-on: ubuntu-latest
