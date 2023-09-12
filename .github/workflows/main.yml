@@ -13,7 +13,7 @@ jobs:
     - name: Check if a workflow is already running
       id: check_workflow_status
       run: |
-        running_workflows=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+        running_workflows=$(curl -s -H "Authorization: Bearer ${{ secrets.GHB_SECRETE }}" \
           "https://api.github.com/repos/${{ github.repository }}/actions/runs?status=in_progress")
 
         total_workflows=$(echo "$running_workflows" | jq '.total_count')
