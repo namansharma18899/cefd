@@ -1,14 +1,12 @@
 # cefd (Compression Engine For Dummies)
 
+
 ## Table on Contents
 - [Why](#why)
 - [What](#what)
 - [Setup](#setup)
 - [Test](#test)
 - [Support](#support)
-
-
-
 
 ## What
 - The cefd (Compression Engine For Dummies) is a simple Compression app which encodes text. It's USP is that it's easy to use/understand for someone whose new to Compression.
