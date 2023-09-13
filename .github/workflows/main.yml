@@ -4,27 +4,18 @@ on:
   pull_request:
     branches:
       - main
-
+concurrency:
+  group: ${{ github.workflow }} 
 jobs:
   queue_job:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check if a workflow is already running
-      id: check_workflow_status
-      run: |
-        running_workflows=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-          "https://api.github.com/repos/${{ github.repository }}/actions/runs?status=in_progress")
-
-        total_workflows=$(echo "$running_workflows" | jq '.total_count')
-
-        if [[ $total_workflows -gt 1 ]]; then
-          echo "Another workflow is already running. Queuing this workflow."
-          exit 78 # This exit code will trigger a re-run of the workflow.
-        fi
-
-      continue-on-error: true
-
+    - name: Sleep boy
+      run: echo "Sleeping for 1 min see ya..."
+    - uses: GuillaumeFalourd/wait-sleep-action@v1
+      with:
+        time: '60' # for 60 seconds
     - name: Run the job
       run: echo "Running your job here..."
 
