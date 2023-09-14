@@ -3,9 +3,10 @@ name: PR Workflow
 on:
   pull_request:
     branches:
-      - main
+      - [main, temp]
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.ref }}
+  # group: ${{ github.workflow }}-${{ github.ref }}
 jobs:
   queue_job:
     runs-on: ubuntu-latest
