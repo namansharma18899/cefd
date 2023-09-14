@@ -15,7 +15,7 @@ jobs:
       run: echo "Sleeping for 1 min see ya..."
     - uses: GuillaumeFalourd/wait-sleep-action@v1
       with:
-        time: '60' # for 60 seconds
+        time: '90' # for 60 seconds
     - name: Run the job
       run: echo "Running your job here..."
 
