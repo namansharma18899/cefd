@@ -4,13 +4,16 @@ on:
   pull_request:
     branches: [main, temp]
 concurrency:
-  group: ${{ github.run_id }}
+  group: ${{ github.ref }}
   # group: ${{ github.workflow }}-${{ github.ref }}
 jobs:
   queue_job:
     runs-on: ubuntu-latest
-
     steps:
+    - name: workflowName 
+      run: echo ${{github.workflow}}
+    - name: refName
+      run: echo ${{github.ref}}
     - name: Sleep boy
       run: echo "Sleeping for 1 min see ya..."
     - uses: GuillaumeFalourd/wait-sleep-action@v1
@@ -18,7 +21,6 @@ jobs:
         time: '90' # for 60 seconds
     - name: Run the job
       run: echo "Running your job here..."
-
     - name: Complete the job
       run: echo "Job complete."
 
