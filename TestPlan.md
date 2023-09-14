@@ -10,6 +10,15 @@
 
 # ISSUES:
 
+
+
+
+
+
+
+
+
+
 [x] Fix No freq number for single character
 [] Fails on big strings. Must be an Issue with BWT algo
 [] Cmp fails with Numeric Values as well
