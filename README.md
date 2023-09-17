@@ -30,7 +30,6 @@ Also Good place for someone to learn compression algos.
 $ cd cefd/
 $ python3 cengine.py
 ```
-
 ## Test
 - Python Unittest 
 ```
@@ -38,7 +37,6 @@ $ cd cefd/
 $ export PYTHONPATH=`pwd`
 $ python3 -m unittest discover -s tests/compression -v
 ```
-
 ## Support
 - Please make sure to ⭐ the repository if you want to show support 💌. And if you want to go above and beyond you can contribute to this repo. I'll really appreciate it.
 
