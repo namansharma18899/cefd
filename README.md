@@ -17,7 +17,7 @@ Also Good place for someone to learn compression algos.
 </p>
 
 ## Why
-- Your average Zip hater :)
+- Inspired by Zip :)
 
 
 <p align="center">
