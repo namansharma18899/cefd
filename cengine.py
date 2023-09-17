@@ -1,8 +1,11 @@
+import subprocess
 import argparse
 import os
 from compression.bwt import BWT
 from compression.rle import RLE
+from utils.utility import Logger
 
+logger = Logger().get_logging_object(__name__)
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
@@ -17,6 +20,7 @@ decoded_file_extension = ".dec"
 # TODO: ADD LOGS
 def encode_string_buffer(string_buffer):
     bwt = BWT()
+    logger.info("Encoding String")
     bwt = bwt.encode(string_buffer)
     rle_obj = RLE()
     compress_char_arr = rle_obj.encode(bwt)
@@ -25,6 +29,7 @@ def encode_string_buffer(string_buffer):
 
 def decode_string_buffer(string_buffer):
     rle_obj = RLE()
+    logger.info("Decoding String")
     compress_char_arr = rle_obj.decode(string_buffer)
     bwt = BWT()
     bwt = bwt.decode(compress_char_arr)
@@ -67,8 +72,11 @@ def handle_file(file):
 
 
 if __name__ == "__main__":
-    if encode:
-        file = "/home/namansh/personal/projects/cefd/assets/temp.text"
-    else:
-        file = "/home/namansh/personal/projects/cefd/assets/temp.enc.text"
-    handle_file(file)
+    enc_input_file = "/home/namansh/personal/projects/cefd/assets/temp.text"
+    dec_input_file = "/home/namansh/personal/projects/cefd/assets/temp.enc.text"
+    dec_output_file = "/home/namansh/personal/projects/cefd/assets/temp.dec.enc"
+    encode= True 
+    handle_file(file=enc_input_file)
+    encode=False
+    handle_file(file=dec_input_file)
+    print(subprocess.run(f'md5sum {enc_input_file} {dec_output_file}', shell=True, check=True))
