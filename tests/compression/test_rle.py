@@ -8,8 +8,8 @@ class TestRLECompression(unittest.TestCase):
 
     def setUp(self) -> None:
         self.rle_obj = RLE()
-        self.test_input = 'sodaesyn d o b t  hitogii$ a'
-        self.test_output = 'sodaesyn d o b t2 hitog2i$ a'
+        self.test_input = 'sodaesyn d o b    t  hitogii$ a. This is a sacred place    '
+        self.test_output = 'sodaesyn d o b4 t2 hitog2i$ a. This is a sacred place4 '
 
     def test_rle_encode(self):
         """

@@ -19,11 +19,11 @@ decoded_file_extension = ".dec"
 
 # TODO: ADD LOGS
 def encode_string_buffer(string_buffer):
-    bwt = BWT()
+    # bwt = BWT()
+    # bwt = bwt.encode(string_buffer)
     logger.info("Encoding String")
-    bwt = bwt.encode(string_buffer)
     rle_obj = RLE()
-    compress_char_arr = rle_obj.encode(bwt)
+    compress_char_arr = rle_obj.encode(string_buffer)
     return compress_char_arr
 
 
@@ -31,10 +31,10 @@ def decode_string_buffer(string_buffer):
     rle_obj = RLE()
     logger.info("Decoding String")
     compress_char_arr = rle_obj.decode(string_buffer)
-    bwt = BWT()
-    bwt = bwt.decode(compress_char_arr)
-    bwt = bwt[::-1][1:]
-    return bwt
+    # bwt = BWT()
+    # bwt = bwt.decode(compress_char_arr)
+    # bwt = compress_char_arr[::-1][1:]
+    return compress_char_arr 
 
 
 def write_file(file, buffer):

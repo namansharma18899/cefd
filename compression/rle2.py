@@ -33,17 +33,13 @@ class RLE:
 
     @timer
     def decode(self, encoded_text: str):
-        logger.info(f"encoded -> {encoded_text} as")
+        logger.info("encoded -> {} as".format(encoded_text))
         decoded = ""
         i = 0
         while i < len(encoded_text):
             if encoded_text[i].isdigit():
-                temp=0
-                while(encoded_text[i].isdigit()):
-                    temp= temp*10+int(encoded_text[i])
-                    i+=1
-                decoded += encoded_text[i] * temp 
-                i+=1
+                decoded += encoded_text[i + 1] * int(encoded_text[i])
+                i += 2
             else:
                 decoded += encoded_text[i]
                 i += 1
