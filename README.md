@@ -1,6 +1,7 @@
 # cefd (Compression Engine For Dummies)
 
 ## Table on Contents
+
 - [Why](#why)
 - [What](#what)
 - [Setup](#setup)
