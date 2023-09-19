@@ -20,12 +20,9 @@ Also Good place for someone to learn compression algos.
 ## Why
 - Inspired by Zip :)
 
-
-
 <p align="center">
   <img src="https://github.com/namansharma18899/cefd/blob/main/assets/images/7x6ndo.jpg" />
 </p>
-
 
 ## Setup
 ```
