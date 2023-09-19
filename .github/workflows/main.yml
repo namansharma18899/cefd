@@ -3,15 +3,17 @@ name: PR Workflow
 on:
   pull_request:
     branches: [main, temp]
-concurrency:
-  group: ${{ github.workflow }}
   # group: ${{ github.workflow }}-${{ github.ref }}
 jobs:
   queue_job:
+    concurrency:
+      group: ${{github.ref_name}}
     runs-on: ubuntu-latest
     steps:
     - name: workflowName 
       run: echo ${{github.workflow}}
+    - name: Refname
+      run: echo ${{ github.ref_name }}
     - name: refName
       run: echo ${{github.ref}}
     - name: Sleep boy
@@ -23,4 +25,6 @@ jobs:
       run: echo "Running your job here..."
     - name: Complete the job
       run: echo "Job complete."
+
+
 
