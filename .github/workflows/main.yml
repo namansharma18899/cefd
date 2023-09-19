@@ -3,7 +3,6 @@ name: PR Workflow
 on:
   pull_request:
     branches: [main, temp]
-  # group: ${{ github.workflow }}-${{ github.ref }}
 jobs:
   queue_job:
     concurrency:
