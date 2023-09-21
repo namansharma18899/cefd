@@ -4,9 +4,11 @@ on:
   pull_request:
     branches: [main, temp]
   # group: ${{ github.workflow }}-${{ github.ref }}
-concurrency: 1
+# concurrency: 1
 jobs:
   queue_job:
+    if: github.event.workflow == 'TestFlow' && 
+       github.workspace.number_active_workflows == 1
     # concurrency:
     #   group:  ${{github.workflow}}
     runs-on: ubuntu-latest
@@ -22,6 +24,7 @@ jobs:
     - name: Repo
       run: echo ${{github.repository}}
   SleepyBoyJob:
+    needs: queue_job
     # concurrency:
     #   group: SleepyBoyJob 
     runs-on: ubuntu-latest
@@ -36,6 +39,7 @@ jobs:
     - name: Run the job
       run: echo "Running your job here..." 
   SleepyJob2:
+    needs: SleepyBoyJob
     # concurrency:
     #   group: SleepyBoyJob 
     runs-on: ubuntu-latest
