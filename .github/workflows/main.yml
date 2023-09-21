@@ -7,7 +7,7 @@ on:
 jobs:
   queue_job:
     concurrency:
-      group: queue_job
+      group:  ${{github.workflow}}
     runs-on: ubuntu-latest
     steps:
     - name: workflowName 
@@ -21,6 +21,20 @@ jobs:
     - name: Repo
       run: echo ${{github.repository}}
   SleepyBoyJob:
+    # concurrency:
+    #   group: SleepyBoyJob 
+    runs-on: ubuntu-latest
+    steps:
+    - name: sleepy jobname
+      run: echo ${{github.job}}
+    - name: Sleep boy
+      run: echo "Sleeping for 1 min see ya..."
+    - uses: GuillaumeFalourd/wait-sleep-action@v1
+      with:
+        time: '90' # for 60 seconds
+    - name: Run the job
+      run: echo "Running your job here..." 
+  SleepyJob2:
     concurrency:
       group: SleepyBoyJob 
     runs-on: ubuntu-latest
