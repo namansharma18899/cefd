@@ -7,7 +7,7 @@ on:
 jobs:
   queue_job:
     concurrency:
-      group: ${{github.job}}
+      group: queue_job
     runs-on: ubuntu-latest
     steps:
     - name: workflowName 
@@ -22,7 +22,7 @@ jobs:
       run: echo ${{github.repository}}
   SleepyBoyJob:
     concurrency:
-      group: ${{github.job}}
+      group: SleepyBoyJob 
     runs-on: ubuntu-latest
     steps:
     - name: sleepy jobname
