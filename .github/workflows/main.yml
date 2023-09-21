@@ -16,11 +16,8 @@ jobs:
       run: echo ${{ github.ref_name }}
     - name: refName
       run: echo ${{github.ref}}
-    - name: stakoverflow
-      run: |
-          # Short name for current branch. For PRs, use target branch (base ref)
-          GIT_BRANCH=${GITHUB_BASE_REF:-${GITHUB_REF#refs/heads/}}
-          echo "GIT_BRANCH=$GIT_BRANCH" >> $GITHUB_ENV
+    - name: BranchName
+      run: echo $(git rev-parse --abbrev-ref HEAD)
     - name: Sleep boy
       run: echo "Sleeping for 1 min see ya..."
     - uses: GuillaumeFalourd/wait-sleep-action@v1
@@ -30,7 +27,3 @@ jobs:
       run: echo "Running your job here..."
     - name: Complete the job
       run: echo "Job complete."
-
-
-
-
