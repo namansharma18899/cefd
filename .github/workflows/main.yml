@@ -3,12 +3,10 @@ name: PR Workflow
 on:
   pull_request:
     branches: [main, temp]
-  # group: ${{ github.workflow }}-${{ github.ref }}
-# concurrency: 1
+concurrency: 
+  group: naman-group
 jobs:
   queue_job:
-    if: github.event.workflow == 'TestFlow' && 
-       github.workspace.number_active_workflows == 1
     # concurrency:
     #   group:  ${{github.workflow}}
     runs-on: ubuntu-latest
