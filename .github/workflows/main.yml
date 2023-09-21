@@ -4,10 +4,11 @@ on:
   pull_request:
     branches: [main, temp]
   # group: ${{ github.workflow }}-${{ github.ref }}
+concurrency: 1
 jobs:
   queue_job:
-    concurrency:
-      group:  ${{github.workflow}}
+    # concurrency:
+    #   group:  ${{github.workflow}}
     runs-on: ubuntu-latest
     steps:
     - name: workflowName 
@@ -35,8 +36,8 @@ jobs:
     - name: Run the job
       run: echo "Running your job here..." 
   SleepyJob2:
-    concurrency:
-      group: SleepyBoyJob 
+    # concurrency:
+    #   group: SleepyBoyJob 
     runs-on: ubuntu-latest
     steps:
     - name: sleepy jobname
