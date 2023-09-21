@@ -5,6 +5,7 @@ on:
     branches: [main, temp]
 concurrency: 
   group: naman-group
+  cancel-in-progress: true
 jobs:
   queue_job:
     # concurrency:
