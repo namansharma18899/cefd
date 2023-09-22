@@ -3,24 +3,52 @@ name: PR Workflow
 on:
   pull_request:
     branches: [main, temp]
-concurrency:
-  group: ${{ github.workflow }}
-  # group: ${{ github.workflow }}-${{ github.ref }}
+concurrency: 
+  group: naman-group
+  # cancel-in-progress: true
 jobs:
   queue_job:
+    # concurrency:
+    #   group:  ${{github.workflow}}
     runs-on: ubuntu-latest
     steps:
     - name: workflowName 
       run: echo ${{github.workflow}}
+    - name: Refname
+      run: echo ${{ github.ref_name }}
+    - name: jobname
+      run: echo ${{github.job}}
     - name: refName
       run: echo ${{github.ref}}
+    - name: Repo
+      run: echo ${{github.repository}}
+  SleepyBoyJob:
+    needs: queue_job
+    # concurrency:
+    #   group: SleepyBoyJob 
+    runs-on: ubuntu-latest
+    steps:
+    - name: sleepy jobname
+      run: echo ${{github.job}}
     - name: Sleep boy
       run: echo "Sleeping for 1 min see ya..."
     - uses: GuillaumeFalourd/wait-sleep-action@v1
       with:
         time: '90' # for 60 seconds
     - name: Run the job
-      run: echo "Running your job here..."
-    - name: Complete the job
-      run: echo "Job complete."
-
+      run: echo "Running your job here..." 
+  SleepyJob2:
+    needs: SleepyBoyJob
+    # concurrency:
+    #   group: SleepyBoyJob 
+    runs-on: ubuntu-latest
+    steps:
+    - name: sleepy jobname
+      run: echo ${{github.job}}
+    - name: Sleep boy
+      run: echo "Sleeping for 1 min see ya..."
+    - uses: GuillaumeFalourd/wait-sleep-action@v1
+      with:
+        time: '60' # for 60 seconds
+    - name: Run the job
+      run: echo "Running your job here..." 
