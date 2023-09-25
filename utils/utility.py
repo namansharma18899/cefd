@@ -1,7 +1,44 @@
+import logging
+import os
+from pathlib import Path
 import heapq
 import heapq
 from collections import defaultdict
+import random
+import sys
 import time
+
+class Logger:
+    def get_logging_object(self, name, log_level=logging.DEBUG) -> logging:
+        """The function get_logging_object returns the logging object.
+        Returns:
+            logger: Returns the logging object.
+        """
+        log_file = f'./api.log'
+        logger = logging.getLogger(name)
+        logger.setLevel(log_level)
+        f_formatter = logging.Formatter(
+            "%(levelname)s - %(name)s - %(asctime)s - %(funcName)s - %(message)s",
+            datefmt="%d-%b %H:%M:%S",
+        )
+        file_handler = logging.FileHandler(log_file, "a")
+        file_handler.setFormatter(f_formatter)
+        s_formatter = logging.Formatter(
+            "%(levelname)s - %(name)s - %(asctime)s - %(funcName)s - %(message)s ",
+            datefmt="%d-%b %H:%M:%S",
+        )
+        stream_handler = logging.StreamHandler()
+        stream_handler.setFormatter(s_formatter)
+        # logger.addHandler(file_handler)
+        logger.propagate = False
+        logger.addHandler(stream_handler)
+        return logger
+
+
+logger = Logger().get_logging_object(__name__)
+
+def get_compression_ratio(f1, f2):
+  return int(os.path.getsize(f1)/ os.path.getsize(f2))
 
 class ListNode:
     def __init__(self, val=0, next=None):
@@ -57,7 +94,7 @@ def timer(fun):
     start_time = time.time()
     output = fun(*args)
     end_time = time.time()
-    print(f'Time Taken by {fun.__name__} -> {end_time-start_time}ms')
+    logger.info(f'Time Taken by {fun.__name__} -> {(end_time-start_time):.6f}ms')
     return output
   return wraps
 
@@ -112,31 +149,48 @@ def insertLevelOrder(array: list,i,n)-> TreeNode:
         root.right = insertLevelOrder(array, 2 * i + 2, n)          
     return root
 
-import logging
-from pathlib import Path
 
-class Logger:
-    def get_logging_object(self, name, log_level=logging.DEBUG) -> logging:
-        """The function get_logging_object returns the logging object.
-        Returns:
-            logger: Returns the logging object.
-        """
-        log_file = f'./api.log'
-        logger = logging.getLogger(name)
-        logger.setLevel(log_level)
-        f_formatter = logging.Formatter(
-            "%(levelname)s - %(name)s - %(asctime)s - %(funcName)s - %(message)s",
-            datefmt="%d-%b %H:%M:%S",
-        )
-        file_handler = logging.FileHandler(log_file, "a")
-        file_handler.setFormatter(f_formatter)
-        s_formatter = logging.Formatter(
-            "%(levelname)s - %(name)s - %(asctime)s - %(funcName)s - %(message)s ",
-            datefmt="%d-%b %H:%M:%S",
-        )
-        stream_handler = logging.StreamHandler()
-        stream_handler.setFormatter(s_formatter)
-        # logger.addHandler(file_handler)
-        logger.propagate = False
-        logger.addHandler(stream_handler)
-        return logger
+colors = {
+        "red": "\033[91m",
+        "green": "\033[92m",
+        "yellow": "\033[93m",
+        "blue": "\033[94m",
+        "purple": "\033[95m",
+        "cyan": "\033[96m",
+    }
+
+def create_cefd_banner():
+    banner = r"""
+ ________          _______           ________      ________     
+|\   ____\        |\  ___ \         |\  _____\    |\   ___ \    
+\ \  \___|        \ \   __/|        \ \  \__/     \ \  \_|\ \   
+ \ \  \            \ \  \_|/__       \ \   __\     \ \  \ \\ \  
+  \ \  \____        \ \  \_|\ \       \ \  \_|      \ \  \_\\ \ 
+   \ \_______\       \ \_______\       \ \__\        \ \_______\
+    \|_______|        \|_______|        \|__|         \|_______|
+                                                                
+    """
+    reset = "\033[0m"
+    res = ''
+    avail_colors = [each for each in colors.keys()]
+    for each in banner:
+      if each!=' ':
+         res+=f'{colors[random.choice(avail_colors)]}{each}{reset}'
+      else:
+         res+=' '
+    return res
+
+
+def print_colored(text, color):
+    reset = "\033[0m"
+    if color in colors:
+        return f"{colors[color]}{text}{reset}"
+    else:
+        return text
+
+def print_progress_bar(iteration, total, bar_length=50):
+    progress = (iteration / total)
+    arrow = '=' * int(round(bar_length * progress))
+    spaces = ' ' * (bar_length - len(arrow))
+    sys.stdout.write(f"\r[{arrow + spaces}] {int(progress * 100)}%")
+    sys.stdout.flush()
