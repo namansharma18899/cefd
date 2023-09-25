@@ -1,4 +1,4 @@
-from utils.utility import timer, Logger
+from utils.utility import print_progress_bar, timer, Logger
 
 logger = Logger().get_logging_object(__name__)
 
@@ -15,9 +15,12 @@ class RLE:
 
     @timer
     def encode(self, text):
+        logger.info("Encoding String")
         encoded = ""
         count = 1
         prev_char = text[0]
+        index = 1
+        total = len(text)
         for char in text[1:]:
             if char == prev_char:
                 count += 1
@@ -28,14 +31,19 @@ class RLE:
                     encoded += str(count) + prev_char
                 count = 1
                 prev_char = char
+            print_progress_bar(iteration=index, total=total-1)
+            index+=1
         encoded += str(count) + prev_char if count > 1 else prev_char
+        print('\n')
         return encoded
 
     @timer
     def decode(self, encoded_text: str):
-        logger.info(f"encoded -> {encoded_text} as")
+        logger.info("Decoding String")
         decoded = ""
         i = 0
+        index = 1
+        total = len(encoded_text)
         while i < len(encoded_text):
             if encoded_text[i].isdigit():
                 temp=0
@@ -47,4 +55,6 @@ class RLE:
             else:
                 decoded += encoded_text[i]
                 i += 1
+            print_progress_bar(iteration=i+1, total=total)
+        print('\n')
         return decoded
