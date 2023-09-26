@@ -1,4 +1,5 @@
 import subprocess
+import hashlib
 from utils.utility import create_cefd_banner, get_compression_ratio, print_colored
 import argparse
 import os
@@ -73,7 +74,8 @@ def handle_file(file: str, transform: bool):
         write_file(result_file_loc, result_buffer)
     f.close()
 
-
+def find_md5sum(f):
+    return hashlib.md5(open(f,'rb').read()).hexdigest()
 class Colors:
     red = "red"
     green = "green"
@@ -101,8 +103,7 @@ if __name__ == "__main__":
     print(
         f"Compressed Ratio: {print_colored(text=get_compression_ratio(enc_input_file, dec_input_file ),  color=clrs.green)}"
     )
-    logger.info(
-        subprocess.run(
-            f"md5sum {enc_input_file} {dec_output_file}", shell=True, check=True
-        )
-    )
+    if find_md5sum(enc_input_file) == find_md5sum(dec_output_file):
+        print(f'md5 matched ✅ \n Original: {print_colored(text=find_md5sum(enc_input_file),color=clrs.green)}\n Decrypted: {print_colored(text=find_md5sum(enc_input_file),color=clrs.green)}')
+    else:
+        print(f'md5sum mismatch ❌ \n Original: {print_colored(text=find_md5sum(enc_input_file),color=clrs.green)}\n Decrypted: {print_colored(text=find_md5sum(enc_input_file),color=clrs.red)}')
