@@ -1,4 +1,4 @@
-from suffix_tree import SuffixTree
+from utils.suffix_tree import SuffixTree
 
 
 def compress_buffer(string_buffer: str):

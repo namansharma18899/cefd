@@ -233,8 +233,3 @@ class SuffixTree(object):
                 repeated_substrings[key] = 0
             repeated_substrings[key] += presence
         return repeated_substrings
-        # for key in repeated_substrings:
-        #     if len(key) > 1:
-        #         print(key, repeated_substrings[key])
-        #         dc[key] = repeated_substrings[key]
-            
