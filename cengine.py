@@ -11,10 +11,12 @@ logger = Logger().get_logging_object(__name__)
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
-    "-e", "--encode", action="store_true", help="Flag to Encode the string"
+    # "-e", "--encode", action="store_true", help="Flag to Encode the string"
+    "-a", "--algo", default='rle', choices=['rle', 'sft'], help="Algo to Encode the string"
 )
 args = parser.parse_args()
-encode = args.encode if args.encode else False
+algo = args.algo
+# encode = args.encode if args.encode else False
 encoded_file_extension = ".enc"
 decoded_file_extension = ".dec"
 
@@ -87,9 +89,9 @@ class Colors:
 
 if __name__ == "__main__":
     print(create_cefd_banner())
-    enc_input_file = "/home/namansh/personal/projects/cefd/assets/temp.text"
-    dec_input_file = "/home/namansh/personal/projects/cefd/assets/temp.enc.text"
-    dec_output_file = "/home/namansh/personal/projects/cefd/assets/temp.dec.enc"
+    enc_input_file =  "/home/naman/work/Projects/cefd/assets/temp.text"
+    dec_input_file =  "/home/naman/work/Projects/cefd/assets/temp.enc.text"
+    dec_output_file = "/home/naman/work/Projects/cefd/assets/temp.dec.enc"
     print("Compressing data:")
     clrs = Colors()
     print(
