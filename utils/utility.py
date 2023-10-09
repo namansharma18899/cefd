@@ -90,9 +90,9 @@ def swap(arr, i, j):
     arr[j] = temp
 
 def timer(fun):
-  def wraps(*args):
+  def wraps(*args, **kwargs):
     start_time = time.time()
-    output = fun(*args)
+    output = fun(*args, **kwargs)
     end_time = time.time()
     logger.info(f'Time Taken by {fun.__name__} -> {(end_time-start_time):.6f}ms')
     return output

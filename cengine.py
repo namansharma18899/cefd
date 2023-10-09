@@ -89,23 +89,23 @@ class Colors:
 
 if __name__ == "__main__":
     print(create_cefd_banner())
-    enc_input_file =  "/home/naman/work/Projects/cefd/assets/temp.text"
-    dec_input_file =  "/home/naman/work/Projects/cefd/assets/temp.enc.text"
-    dec_output_file = "/home/naman/work/Projects/cefd/assets/temp.dec.enc"
+    org_file =  "/home/namansh/personal/projects/cefd/assets/temp.text"
+    enc_input_file =  "/home/namansh/personal/projects/cefd/assets/temp.enc.text"
+    dec_output_file = "/home/namansh/personal/projects/cefd/assets/temp.dec.enc"
     print("Compressing data:")
     clrs = Colors()
     print(
-        f"Original Size: {print_colored(text=os.path.getsize(enc_input_file), color=clrs.blue)} bytes"
+        f"Original Size: {print_colored(text=os.path.getsize(org_file), color=clrs.blue)} bytes"
     )
-    handle_file(file=enc_input_file, transform=True)
-    handle_file(file=dec_input_file, transform=False)
+    handle_file(file=org_file, transform=True)
+    handle_file(file=enc_input_file, transform=False)
     print(
-        f"Compressed Size: {print_colored(text=os.path.getsize(dec_input_file),  color=clrs.yellow)} bytes"
+        f"Compressed Size: {print_colored(text=os.path.getsize(enc_input_file),  color=clrs.yellow)} bytes"
     )
     print(
-        f"Compressed Ratio: {print_colored(text=get_compression_ratio(enc_input_file, dec_input_file ),  color=clrs.green)}"
+        f"Compressed Ratio: {print_colored(text=get_compression_ratio(org_file, enc_input_file ),  color=clrs.green)}"
     )
-    if find_md5sum(enc_input_file) == find_md5sum(dec_output_file):
-        print(f'md5 matched ✅ \n Original: {print_colored(text=find_md5sum(enc_input_file),color=clrs.green)}\n Decrypted: {print_colored(text=find_md5sum(enc_input_file),color=clrs.green)}')
+    if find_md5sum(org_file) == find_md5sum(dec_output_file):
+        print(f'md5 matched ✅ \n Original: {print_colored(text=find_md5sum(org_file),color=clrs.green)}\n Decrypted: {print_colored(text=find_md5sum(org_file),color=clrs.green)}')
     else:
-        print(f'md5sum mismatch ❌ \n Original: {print_colored(text=find_md5sum(enc_input_file),color=clrs.green)}\n Decrypted: {print_colored(text=find_md5sum(enc_input_file),color=clrs.red)}')
+        print(f'md5sum mismatch ❌ \n Original: {print_colored(text=find_md5sum(org_file),color=clrs.green)}\n Decrypted: {print_colored(text=find_md5sum(org_file),color=clrs.red)}')
