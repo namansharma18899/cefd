@@ -49,10 +49,9 @@ $ export PYTHONPATH=`pwd`
 $ python3 -m unittest discover -s tests/compression -v
 ```
 ## Support
-- Please make sure to ⭐ the repository if you want to show support 💌. And if you want to go above and beyond you can contribute to this repo. I'll really appreciate it.
 
 <p align="center">
   <img src="https://github.com/namansharma18899/cefd/blob/main/assets/images/7x6nq5.jpg" />
 </p>
 
-### Learn more about RLE, BWT -> https://www.baeldung.com/cs/bwt-rle-compression-algorithm-for-short-text-strings
+Learn more about [bwt-rle-compression](https://www.baeldung.com/cs/bwt-rle-compression-algorithm-for-short-text-strings).
