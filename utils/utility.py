@@ -149,6 +149,14 @@ def insertLevelOrder(array: list,i,n)-> TreeNode:
         root.right = insertLevelOrder(array, 2 * i + 2, n)          
     return root
 
+class Colors:
+    red = "red"
+    green = "green"
+    yellow = "yellow"
+    blue = "blue"
+    purple = "purple"
+    cyan = "cyan"
+
 
 colors = {
         "red": "\033[91m",

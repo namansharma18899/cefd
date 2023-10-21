@@ -1,6 +1,6 @@
 import subprocess
 import hashlib
-from utils.utility import create_cefd_banner, get_compression_ratio, print_colored
+from utils.utility import Colors, create_cefd_banner, get_compression_ratio, print_colored
 import argparse
 import os
 from compression.bwt import BWT
@@ -11,12 +11,10 @@ logger = Logger().get_logging_object(__name__)
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
-    # "-e", "--encode", action="store_true", help="Flag to Encode the string"
     "-a", "--algo", default='rle', choices=['rle', 'sft'], help="Algo to Encode the string"
 )
 args = parser.parse_args()
 algo = args.algo
-# encode = args.encode if args.encode else False
 encoded_file_extension = ".enc"
 decoded_file_extension = ".dec"
 
@@ -78,20 +76,12 @@ def handle_file(file: str, transform: bool):
 
 def find_md5sum(f):
     return hashlib.md5(open(f,'rb').read()).hexdigest()
-class Colors:
-    red = "red"
-    green = "green"
-    yellow = "yellow"
-    blue = "blue"
-    purple = "purple"
-    cyan = "cyan"
-
 
 if __name__ == "__main__":
     print(create_cefd_banner())
-    org_file =  "/home/namansh/personal/projects/cefd/assets/temp.text"
-    enc_input_file =  "/home/namansh/personal/projects/cefd/assets/temp.enc.text"
-    dec_output_file = "/home/namansh/personal/projects/cefd/assets/temp.dec.enc"
+    org_file =  "assets/temp.text"
+    enc_input_file =  "assets/temp.enc.text"
+    dec_output_file = "assets/temp.dec.enc"
     print("Compressing data:")
     clrs = Colors()
     print(
