@@ -76,7 +76,6 @@ def handle_file(file: str, transform: bool):
 
 def find_md5sum(f):
     return hashlib.md5(open(f,'rb').read()).hexdigest()
-
 if __name__ == "__main__":
     print(create_cefd_banner())
     org_file =  "assets/temp.text"
