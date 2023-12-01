@@ -1,57 +1,43 @@
-# cefd (Compression Engine For Dummies)
+<div align='center'>
+<img src="assets/images/logo-trans.png" width=50%  height=250px>
+<hr>
 
-```
- _______          _______           ________      ________     
-|\   ____\        |\  ___ \         |\  _____\    |\   ___ \    
-\ \  \___|        \ \   __/|        \ \  \__/     \ \  \_|\ \   
- \ \  \            \ \  \_|/__       \ \   __\     \ \  \ \\ \  
-  \ \  \____        \ \  \_|\ \       \ \  \_|      \ \  \_\\ \ 
-   \ \_______\       \ \_______\       \ \__\        \ \_______\
-    \|_______|        \|_______|        \|__|         \|_______|
-                                                                
-                                                                                                                                
-```                                                                                                                                
+### **✨ Your Personal Compression App ✨**
 
-## Table on Contents
-- [Why](#why)
-- [What](#what)
-- [Setup](#setup)
-- [Test](#test)
-- [Support](#support)
+![Code Size](https://img.shields.io/github/languages/code-size/namansharma18899/cefd)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/namansharma18899/cefd/blob/main/LICENSE)
+[![GitHub forks](https://img.shields.io/github/forks/namansharma18899/cefd)](https://github.com/namansharma18899/cefd/network)
+[![GitHub issues](https://img.shields.io/github/issues/namansharma18899/cefd)](https://github.com/namansharma18899/cefd/issues)
+[![Last Commit](https://img.shields.io/github/last-commit/namansharma18899/cefd)](https://github.com/namansharma18899/cefd/commits/main)
 
-## What
-- The cefd (Compression Engine For Dummies) is a simple Compression app which encodes text. It's USP is that it's easy to use/understand for someone whose new to Compression.
+*If you like my work a ⭐ would mean the world*
+</div>
+
+---
+
+## 🌎 Overview
+The cefd (Compression Engine For Dummies) is a simple Compression app which encodes text. It's USP is that it's easy to use/understand for someone whose new to Compression.
 Also Good place for someone to learn compression algos.
 
-<p align="center">
-  <img src="https://github.com/namansharma18899/cefd/blob/main/assets/images/7x6o5x.jpg" />
-</p>
+## 🫧 Features
+- **Beginner Friendly Compression Algo**: Let's Type brings typing speed evaluation right to your terminal, creating a seamless and distraction-free environment for users.
 
-## Why
-- Inspired by Zip :)
+- **Python Power**: Developed entirely in Python, Let's Type is not just a typing speed calculator; it's a testament to the versatility and elegance of Python programming.
 
+- **See the effect**: You can design your own algo, use it in the app and compare it with the market standards.
 
-<p align="center">
-  <img src="https://github.com/namansharma18899/cefd/blob/main/assets/images/7x6ndo.jpg" />
-</p>
+## 🤨 Why
+- Inspired by Zip : )
 
-
-## Setup
-```
-$ cd cefd/
-$ python3 cengine.py
-```
-## Test
-- Python Unittest 
-```
+## ⚙️ Setup
+```bash
 $ cd cefd/
 $ export PYTHONPATH=`pwd`
 $ python3 -m unittest discover -s tests/compression -v
 ```
-## Support
 
-<p align="center">
-  <img src="https://github.com/namansharma18899/cefd/blob/main/assets/images/7x6nq5.jpg" />
-</p>
+## 🤗 Support
+- Make sure to leave a ⭐ if you like this project.
 
-Learn more about [bwt-rle-compression](https://www.baeldung.com/cs/bwt-rle-compression-algorithm-for-short-text-strings).
+## 📖 Bibliography
+- Learn more about [bwt-rle-compression](https://www.baeldung.com/cs/bwt-rle-compression-algorithm-for-short-text-strings).
