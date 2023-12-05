@@ -4,6 +4,8 @@
 
 ### **✨ Your Personal Compression App ✨**
 
+
+
 ![Code Size](https://img.shields.io/github/languages/code-size/namansharma18899/cefd)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/namansharma18899/cefd/blob/main/LICENSE)
 [![GitHub forks](https://img.shields.io/github/forks/namansharma18899/cefd)](https://github.com/namansharma18899/cefd/network)
