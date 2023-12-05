@@ -40,4 +40,5 @@ $ python3 -m unittest discover -s tests/compression -v
 - Make sure to leave a ⭐ if you like this project.
 
 ## 📖 Bibliography
+
 - Learn more about [bwt-rle-compression](https://www.baeldung.com/cs/bwt-rle-compression-algorithm-for-short-text-strings).
