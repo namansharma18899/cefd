@@ -5,7 +5,7 @@ on:
     branches: [main, temp]
 concurrency: 
   group: ${{github.workflow}} 
-  cancel-in-progress: true
+    #cancel-in-progress: true
 jobs:
   queue_job:
     # concurrency:
