@@ -4,8 +4,8 @@ on:
   pull_request:
     branches: [main, temp]
 concurrency: 
-  group: naman-group
-  # cancel-in-progress: true
+  group: ${{github.workflow}} 
+  cancel-in-progress: true
 jobs:
   queue_job:
     # concurrency:
@@ -34,7 +34,7 @@ jobs:
       run: echo "Sleeping for 1 min see ya..."
     - uses: GuillaumeFalourd/wait-sleep-action@v1
       with:
-        time: '90' # for 60 seconds
+        time: '20' # for 60 seconds
     - name: Run the job
       run: echo "Running your job here..." 
   SleepyJob2:
@@ -49,6 +49,6 @@ jobs:
       run: echo "Sleeping for 1 min see ya..."
     - uses: GuillaumeFalourd/wait-sleep-action@v1
       with:
-        time: '60' # for 60 seconds
+        time: '10' # for 60 seconds
     - name: Run the job
-      run: echo "Running your job here..." 
+      run: echo "Running 2nd job here..." 
