@@ -1,6 +1,7 @@
 <div align='center'>
 <img src="assets/images/logo-trans.png" width=50%  height=250px>
 
+
 <hr>
 
 ### **✨ Your Personal Compression App ✨**
