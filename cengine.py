@@ -91,6 +91,7 @@ if __name__ == "__main__":
     print(
         f"Compressed Size: {print_colored(text=os.path.getsize(enc_input_file),  color=clrs.yellow)} bytes"
     )
+    print(f'Delta Size --> {print_colored(int(os.path.getsize(org_file) - os.path.getsize(enc_input_file)), color=clrs.cyan)}')
     print(
         f"Compressed Ratio: {print_colored(text=get_compression_ratio(org_file, enc_input_file ),  color=clrs.green)}"
     )
