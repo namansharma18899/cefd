@@ -76,6 +76,8 @@ def handle_file(file: str, transform: bool):
 
 def find_md5sum(f):
     return hashlib.md5(open(f,'rb').read()).hexdigest()
+
+
 if __name__ == "__main__":
     print(create_cefd_banner())
     org_file =  "assets/temp.text"
@@ -96,6 +98,6 @@ if __name__ == "__main__":
         f"Compressed Ratio: {print_colored(text=get_compression_ratio(org_file, enc_input_file ),  color=clrs.green)}"
     )
     if find_md5sum(org_file) == find_md5sum(dec_output_file):
-        print(f'md5 matched ✅ \n Original: {print_colored(text=find_md5sum(org_file),color=clrs.green)}\n Decrypted: {print_colored(text=find_md5sum(org_file),color=clrs.green)}')
+        print(f'md5 matched ✅ \n Original: {print_colored(text=find_md5sum(org_file),color=clrs.green)}\n Uncompressed: {print_colored(text=find_md5sum(dec_output_file),color=clrs.green)}')
     else:
-        print(f'md5sum mismatch ❌ \n Original: {print_colored(text=find_md5sum(org_file),color=clrs.green)}\n Decrypted: {print_colored(text=find_md5sum(org_file),color=clrs.red)}')
+        print(f'md5sum mismatch ❌ \n Original: {print_colored(text=find_md5sum(org_file),color=clrs.green)}\n Uncompressed: {print_colored(text=find_md5sum(dec_output_file),color=clrs.red)}')
